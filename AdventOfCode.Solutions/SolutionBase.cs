@@ -85,14 +85,24 @@ public abstract class SolutionBase
     string LoadInput(bool debug = false)
     {
         var inputFilepath =
-            $"./AdventOfCode.Solutions/Year{Year}/Day{Day:D2}/{(debug ? "debug" : "input")}";
+            $"./AdventOfCode.Solutions/Year{Year}/Day{Day:D2}/{(debug ? "debug" : "input")}.txt";
+        var bob = $"C:\\Users\\wh-rec\\Documents\\GitHub\\advent-of-code-2022\\AdventOfCode.Solutions\\Year2022\\Day{Day:D2}\\input.txt";
+        var debugbob = $"C:\\Users\\wh-rec\\Documents\\GitHub\\advent-of-code-2022\\AdventOfCode.Solutions\\Year2022\\Day{Day:D2}\\debug.txt";
 
-        if (File.Exists(inputFilepath) && new FileInfo(inputFilepath).Length > 0)
+        if (debug)
         {
-            return File.ReadAllText(inputFilepath);
+            if (File.Exists(debugbob) && new FileInfo(debugbob).Length > 0)
+            {
+                return File.ReadAllText(debugbob);
+            }
+        };
+
+        if (File.Exists(bob) && new FileInfo(bob).Length > 0)
+        {
+            return File.ReadAllText(bob);
         }
 
-        if (debug) return "";
+        
 
         try
         {
