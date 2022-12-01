@@ -1,4 +1,4 @@
-###Thank you to https://github.com/sindrekjr/AdventOfCodeBase
+Thank you to https://github.com/sindrekjr/AdventOfCodeBase
 A thank you to the generous person(s) who created this template to utilize. It makes life a lot faster and convenient when others are open with their work. I do not claim to have created any portions of the template. However, the solutions are my own so feel free to judge and leave comments about how I can improve! Thank you!
 
 
