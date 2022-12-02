@@ -1,3 +1,5 @@
+ReSharper Branch - Kyle and Taylor have been strongly encouraging me to utilize resharper. Therefore, the main branch is for my initial gut implementation and this branch is for the cleaner resharper version. I am keeping it a separate branch so that I can compare and see my common mistakes/improvements that can be made
+
 Thank you to https://github.com/sindrekjr/AdventOfCodeBase
 A thank you to the generous person(s) who created this template to utilize. It makes life a lot faster and convenient when others are open with their work. I do not claim to have created any portions of the template. However, the solutions are my own so feel free to judge and leave comments about how I can improve! Thank you!
 
