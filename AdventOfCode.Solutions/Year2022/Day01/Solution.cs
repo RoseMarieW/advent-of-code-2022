@@ -49,10 +49,10 @@ class Solution : SolutionBase
             var elfCalorie = elf.SplitByNewline().Select(int.Parse).Sum();
             doneElves.Add(elfCalorie);
         }
+
         //order the elves
         //take the top 3 elves
         //add their values
-        
         return doneElves.OrderDescending().Take(3).Sum().ToString();
     }
 }
