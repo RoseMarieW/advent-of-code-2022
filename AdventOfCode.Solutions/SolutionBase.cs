@@ -87,13 +87,13 @@ public abstract class SolutionBase
         var inputFilepath =
             $"./AdventOfCode.Solutions/Year{Year}/Day{Day:D2}/{(debug ? "debug" : "input")}.txt";
         var bob = $"C:\\Users\\wh-rec\\Documents\\GitHub\\advent-of-code-2022\\AdventOfCode.Solutions\\Year2022\\Day{Day:D2}\\input.txt";
-        var debugbob = $"C:\\Users\\wh-rec\\Documents\\GitHub\\advent-of-code-2022\\AdventOfCode.Solutions\\Year2022\\Day{Day:D2}\\debug.txt";
+        var debugBob = $"C:\\Users\\wh-rec\\Documents\\GitHub\\advent-of-code-2022\\AdventOfCode.Solutions\\Year2022\\Day{Day:D2}\\debug.txt";
 
         if (debug)
         {
-            if (File.Exists(debugbob) && new FileInfo(debugbob).Length > 0)
+            if (File.Exists(debugBob) && new FileInfo(debugBob).Length > 0)
             {
-                return File.ReadAllText(debugbob);
+                return File.ReadAllText(debugBob);
             }
         };
 

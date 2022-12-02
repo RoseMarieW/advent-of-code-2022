@@ -1,7 +1,3 @@
-using AdventOfCode.Solutions.Utils;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-
 namespace AdventOfCode.Solutions.Year2022.Day01;
 
 class Solution : SolutionBase
@@ -27,15 +23,7 @@ class Solution : SolutionBase
         //hehe oops overthinking
         Debug = true;
         var elves = Input.SplitByParagraph();
-        var maxCalories = 0;
-        foreach (var elf in elves)
-        {
-            var elfCalorie = elf.SplitByNewline().Select(int.Parse).Sum();
-            if (elfCalorie > maxCalories)
-            {
-                maxCalories = elfCalorie;
-            }
-        }
+        var maxCalories = elves.Select(elf => elf.SplitByNewline().Select(int.Parse).Sum()).Prepend(0).Max();
         return maxCalories.ToString();
     }
 
@@ -43,16 +31,11 @@ class Solution : SolutionBase
     {
         Debug = true;
         var elves = Input.SplitByParagraph();
-        var doneElves = new List<int>();
-        foreach (var elf in elves)
-        {
-            var elfCalorie = elf.SplitByNewline().Select(int.Parse).Sum();
-            doneElves.Add(elfCalorie);
-        }
+        var doneElves = elves.Select(elf => elf.SplitByNewline().Select(int.Parse).Sum()).ToList();
+
         //order the elves
         //take the top 3 elves
         //add their values
-        
         return doneElves.OrderDescending().Take(3).Sum().ToString();
     }
 }
