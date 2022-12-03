@@ -6,6 +6,7 @@ class Solution : SolutionBase
 
     protected override string SolvePartOne()
     {
+        Debug = true;
         var rounds = Input.SplitByNewline();
         var totalScore = rounds.Sum(round => round[2] switch
         {
@@ -49,6 +50,7 @@ class Solution : SolutionBase
 
     protected override string SolvePartTwo()
     {
+        Debug = true;
         var rounds = Input.SplitByNewline();
         var totalScore = rounds.Sum(round => round[2] switch
         {
