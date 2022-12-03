@@ -6,6 +6,7 @@ class Solution : SolutionBase
 
     protected override string SolvePartOne()
     {
+        Debug = true;
         var rounds = Input.SplitByNewline();
         var totalScore = 0;
         foreach (var round in rounds)
@@ -61,6 +62,7 @@ class Solution : SolutionBase
 
     protected override string SolvePartTwo()
     {
+        Debug = true;
         var rounds = Input.SplitByNewline();
         var totalScore = 0;
         foreach (var round in rounds)
@@ -71,11 +73,11 @@ class Solution : SolutionBase
             {
                 score = 0 + round[0] switch
                 {
-                    //rock
+                    //they play rock, I play scissors
                     'A' => 3,
-                    //paper
+                    //they play paper, I play rock
                     'B' => 1,
-                    //scissors
+                    //they play scissors, I play paper
                     'C' => 2,
                     _ => 0
                 };
@@ -85,11 +87,11 @@ class Solution : SolutionBase
             {
                 score = 3 + round[0] switch
                 {
-                    //rock
+                    //they play rock, I play rock
                     'A' => 1,
-                    //paper
+                    //they play paper, I play paper
                     'B' => 2,
-                    //scissors
+                    //they play scissors, I play scissors
                     'C' => 3,
                     _ => 0
                 };
@@ -99,11 +101,11 @@ class Solution : SolutionBase
             {
                 score = 6 + round[0] switch
                 {
-                    //rock
+                    //they play rock, I play paper
                     'A' => 2,
-                    //paper
+                    //they play paper, I play scissors
                     'B' => 3,
-                    //scissors
+                    //they play scissors, I play rock
                     'C' => 1,
                     _ => 0
                 };
