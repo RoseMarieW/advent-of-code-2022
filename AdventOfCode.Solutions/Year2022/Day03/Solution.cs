@@ -8,19 +8,12 @@ class Solution : SolutionBase
     {
         //get input formatted right
         var rucksacks = Input.SplitByNewline();
-        var sumOfPriorities = 0;
-
-        foreach (var rucksack in rucksacks)
-        {
-            //find center and split
-            var firstCompartment = rucksack.Substring(0, rucksack.Length/2);
-            var secondCompartment = rucksack.Substring(rucksack.Length / 2);
-            //find duplicate there is only ever one duplicate
-            var duplicateItem = firstCompartment.Intersect(secondCompartment).First();
-            //count the duplicate's priority value
-            sumOfPriorities += GetAlphaValue(duplicateItem);
-
-        }
+        var sumOfPriorities = (from rucksack in rucksacks 
+            let firstCompartment = rucksack[..(rucksack.Length / 2)] 
+            let secondCompartment = rucksack[(rucksack.Length / 2)..]
+            select firstCompartment.Intersect(secondCompartment).First() 
+            into duplicateItem 
+            select GetAlphaValue(duplicateItem)).Sum();
 
         return sumOfPriorities.ToString();
     }
@@ -32,7 +25,7 @@ class Solution : SolutionBase
         var sumOfPriorities = 0;
 
         //a group is three elves
-        for (int group = 0; group <= rucksacks.Length-3; group += 3)
+        for (var group = 0; group <= rucksacks.Length-3; group += 3)
         {
             //find duplicate - there is only ever one duplicate
             var duplicateItem = rucksacks[group].Intersect(rucksacks[group + 1]).Intersect(rucksacks[group + 2]).First();
@@ -43,9 +36,9 @@ class Solution : SolutionBase
         return sumOfPriorities.ToString();
     }
 
-    private int GetAlphaValue(char item)
+    private static int GetAlphaValue(char item)
     {
-        string alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const string alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         return alphabet.IndexOf(item)+1;
     }
 }
