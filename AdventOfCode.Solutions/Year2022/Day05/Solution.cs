@@ -9,7 +9,6 @@ class Solution : SolutionBase
         var parts = Input.SplitByParagraph();
         //first paragraph is current stacks of crates
         var crates = ParseStacks(parts[0]);
-        string message = "";
 
         //paragraph two are the instructions
         foreach (var instruction in parts[1].SplitByNewline())
@@ -28,18 +27,14 @@ class Solution : SolutionBase
                 crates[parsedInstruction[2]-1].Push(crate);
             }
         }
-        foreach(var stack in crates)
-        {
-            message += stack.Peek();
-        }
-        return message;
+
+        return crates.Aggregate("", (current, stack) => current + stack.Peek());
     }
 
     protected override string SolvePartTwo()
     {
         var parts = Input.SplitByParagraph();
         var crates = ParseStacks(parts[0]);
-        string message = "";
 
         foreach (var instruction in parts[1].SplitByNewline())
         {
@@ -64,14 +59,11 @@ class Solution : SolutionBase
             }
             
         }
-        foreach (var stack in crates)
-        {
-            message += stack.Peek();
-        }
-        return message;
+
+        return crates.Aggregate("", (current, stack) => current + stack.Peek());
     }
 
-    private List<Stack<char>> ParseStacks(string input)
+    private static List<Stack<char>> ParseStacks(string input)
     {
         var crates = input.SplitByNewline();
         var stacks = new List<Stack<char>>();
