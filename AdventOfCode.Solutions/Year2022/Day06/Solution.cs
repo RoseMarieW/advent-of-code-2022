@@ -6,11 +6,55 @@ class Solution : SolutionBase
 
     protected override string SolvePartOne()
     {
-        return "";
+        var dataStreamBuffer = Input;
+        var marker = "";
+        for (var i = 0; i < dataStreamBuffer.Length; i++)
+        {
+            if (i < 3)
+            {
+                marker += (dataStreamBuffer[i]);
+            }
+            else
+            {
+                if (marker.Contains(dataStreamBuffer[i]) || marker.GroupBy(c => c).Count(g => g.Count() > 1) >0)
+                {
+                    marker = marker.Remove(0,1);
+                    marker+=(dataStreamBuffer[i]);
+                }
+                else
+                {
+                    return (i+1).ToString();
+                }
+            }
+        }
+
+        return "There were no complete markers";
     }
 
     protected override string SolvePartTwo()
     {
-        return "";
+        var dataStreamBuffer = Input;
+        var marker = "";
+        for (var i = 0; i < dataStreamBuffer.Length; i++)
+        {
+            if (i < 13)
+            {
+                marker += (dataStreamBuffer[i]);
+            }
+            else
+            {
+                if (marker.Contains(dataStreamBuffer[i]) || marker.GroupBy(c => c).Count(g => g.Count() > 1) > 0)
+                {
+                    marker = marker.Remove(0, 1);
+                    marker += (dataStreamBuffer[i]);
+                }
+                else
+                {
+                    return (i + 1).ToString();
+                }
+            }
+        }
+
+        return "There were no complete markers";
     }
 }
