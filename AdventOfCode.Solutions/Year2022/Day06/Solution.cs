@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace AdventOfCode.Solutions.Year2022.Day06;
 
 class Solution : SolutionBase
@@ -16,7 +18,7 @@ class Solution : SolutionBase
             }
             else
             {
-                if (marker.Contains(dataStreamBuffer[i]) || marker.GroupBy(c => c).Count(g => g.Count() > 1) >0)
+                if (marker.Contains(dataStreamBuffer[i]) || marker.Distinct().Count() < 3)
                 {
                     marker = marker.Remove(0,1);
                     marker+=(dataStreamBuffer[i]);
@@ -43,7 +45,7 @@ class Solution : SolutionBase
             }
             else
             {
-                if (marker.Contains(dataStreamBuffer[i]) || marker.GroupBy(c => c).Count(g => g.Count() > 1) > 0)
+                if (marker.Contains(dataStreamBuffer[i]) || marker.Distinct().Count()<13)
                 {
                     marker = marker.Remove(0, 1);
                     marker += (dataStreamBuffer[i]);
