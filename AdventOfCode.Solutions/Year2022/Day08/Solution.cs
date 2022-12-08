@@ -1,5 +1,3 @@
-using System.Reflection.Metadata;
-
 namespace AdventOfCode.Solutions.Year2022.Day08;
 
 class Solution : SolutionBase
@@ -12,9 +10,9 @@ class Solution : SolutionBase
         var perimeter =  (2*(rows.Length + rows[0].Length))-4;
         var visible = 0;
             //after solving part two, I feel this solution is wrong but it got me a star soooo maybe not?
-        for (int i = 1; i < rows.Length - 1; i++)
+        for (var i = 1; i < rows.Length - 1; i++)
         {
-            for (int j = 1; j < rows[i].Length - 1; j++)
+            for (var j = 1; j < rows[i].Length - 1; j++)
             {
                 var isVisible = false;
                 //top
@@ -27,17 +25,16 @@ class Solution : SolutionBase
                     }
                     else
                     {
-                        for (int k = i - 1; k > 0; k--)
+                        for (var k = i - 1; k > 0; k--)
                         {
                             if (int.Parse(rows[k - 1].Substring(j, 1)) >= Int128.Parse(rows[i].Substring(j, 1)))
                             {
                                 break;
                             }
-                            else if (k == 1)
-                            {
-                                visible++;
-                                isVisible = true;
-                            }
+
+                            if (k != 1) continue;
+                            visible++;
+                            isVisible = true;
                         }
                     }
                 }
@@ -51,17 +48,16 @@ class Solution : SolutionBase
                     }
                     else
                     {
-                        for (int k = i + 1; k < rows.Length - 1; k++)
+                        for (var k = i + 1; k < rows.Length - 1; k++)
                         {
                             if (int.Parse(rows[k + 1].Substring(j, 1)) >= Int128.Parse(rows[i].Substring(j, 1)) && !isVisible)
                             {
                                 break;
                             }
-                            else if (k == rows.Length - 2)
-                            {
-                                visible++;
-                                isVisible = true;
-                            }
+
+                            if (k != rows.Length - 2) continue;
+                            visible++;
+                            isVisible = true;
                         }
                     }
                 }
@@ -75,22 +71,22 @@ class Solution : SolutionBase
                     }
                     else
                     {
-                        for (int k = j - 1; k > 0; k--)
+                        for (var k = j - 1; k > 0; k--)
                         {
                             if (int.Parse(rows[i].Substring(k - 1, 1)) >= Int128.Parse(rows[i].Substring(j, 1)))
                             {
                                 break;
                             }
-                            else if (k == 1)
-                            {
-                                visible++;
-                                isVisible = true;
-                            }
+
+                            if (k != 1) continue;
+                            visible++;
+                            isVisible = true;
                         }
                     }
                 }
                 //right
-                if (int.Parse(rows[i].Substring(j + 1, 1)) < Int128.Parse(rows[i].Substring(j, 1)) && !isVisible)
+                if (int.Parse(rows[i].Substring(j + 1, 1)) >= Int128.Parse(rows[i].Substring(j, 1)) ||
+                    isVisible) continue;
                 {
                     if (j + 1 == rows[i].Length-1)
                     {
@@ -98,13 +94,14 @@ class Solution : SolutionBase
                     }
                     else
                     {
-                        for (int k = j + 1; k < rows[i].Length - 1; k++)
+                        for (var k = j + 1; k < rows[i].Length - 1; k++)
                         {
                             if (int.Parse(rows[i].Substring(k + 1, 1)) >= Int128.Parse(rows[i].Substring(j, 1)))
                             {
                                 break;
                             }
-                            else if (k == rows[i].Length - 2)
+
+                            if (k == rows[i].Length - 2)
                             {
                                 visible++;
                             }
@@ -121,22 +118,22 @@ class Solution : SolutionBase
         //Debug = true;
         var rows = Input.SplitByNewline();
         var max = 0;
-        for (int i = 1; i < rows.Length - 1; i++)
+        for (var i = 1; i < rows.Length - 1; i++)
         {
-            for (int j = 1; j < rows[i].Length - 1; j++)
+            for (var j = 1; j < rows[i].Length - 1; j++)
             {
-                var leftview = 1;
-                var rightview = 1;
-                var topview = 1;
-                var bottomview = 1;
+                var leftView = 1;
+                var rightView = 1;
+                var topView = 1;
+                var bottomView = 1;
                 //if a tree is on the edge, its scenic score will be zero right?
                 //top
                 if (int.Parse(rows[i - 1].Substring(j, 1)) < Int128.Parse(rows[i].Substring(j, 1)))
                 {
                    
-                        for (int k = i - 1; k > 0; k--)
+                        for (var k = i - 1; k > 0; k--)
                         {
-                            topview++;
+                            topView++;
                         if (int.Parse(rows[k - 1].Substring(j, 1)) >= Int128.Parse(rows[i].Substring(j, 1)))
                             {
                                 
@@ -149,9 +146,9 @@ class Solution : SolutionBase
                 if (int.Parse(rows[i + 1].Substring(j, 1)) < Int128.Parse(rows[i].Substring(j, 1)))
                 {
                     
-                        for (int k = i + 1; k < rows.Length - 1; k++)
+                        for (var k = i + 1; k < rows.Length - 1; k++)
                         {
-                            bottomview++;
+                            bottomView++;
                              if (int.Parse(rows[k + 1].Substring(j, 1)) >= Int128.Parse(rows[i].Substring(j, 1)))
                             {
                                 
@@ -164,9 +161,9 @@ class Solution : SolutionBase
                 if (int.Parse(rows[i].Substring(j - 1, 1)) < Int128.Parse(rows[i].Substring(j, 1)))
                 {
                    
-                        for (int k = j - 1; k > 0; k--)
+                        for (var k = j - 1; k > 0; k--)
                         {
-                            leftview++;
+                            leftView++;
                             if (int.Parse(rows[i].Substring(k - 1, 1)) >= Int128.Parse(rows[i].Substring(j, 1)))
                             {
                                
@@ -179,9 +176,9 @@ class Solution : SolutionBase
                 if (int.Parse(rows[i].Substring(j + 1, 1)) < Int128.Parse(rows[i].Substring(j, 1)))
                 {
                    
-                        for (int k = j + 1; k < rows[i].Length - 1; k++)
+                        for (var k = j + 1; k < rows[i].Length - 1; k++)
                         {
-                            rightview++;
+                            rightView++;
                             if (int.Parse(rows[i].Substring(k + 1, 1)) >= Int128.Parse(rows[i].Substring(j, 1)))
                             {
                                 break;
@@ -190,8 +187,8 @@ class Solution : SolutionBase
                     
                 }
                 
-                var scenic = bottomview * rightview * leftview * topview;
-                //Console.WriteLine(rightview + " b " + scenic);
+                var scenic = bottomView * rightView * leftView * topView;
+                //Console.WriteLine(rightView + " b " + scenic);
                 if (max < scenic)
                 {
                     max = scenic;
