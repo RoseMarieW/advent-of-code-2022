@@ -92,7 +92,7 @@ class Solution : SolutionBase
             else
             {
                 var index = 0;
-                //crates are in consistant intervals of 4
+                //crates are in consistent intervals of 4
                 for (var column=1; column < row.Length; column+=4)
                 {
                     char crate = row[column];
